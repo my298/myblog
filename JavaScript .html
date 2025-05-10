@@ -1,0 +1,1199 @@
+<!DOCTYPE html>
+        <html>
+        <head>
+            <meta charset="UTF-8">
+            <title>JavaScript</title>
+            <style>
+/* From extension vscode.github */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+.vscode-dark img[src$=\#gh-light-mode-only],
+.vscode-light img[src$=\#gh-dark-mode-only],
+.vscode-high-contrast:not(.vscode-high-contrast-light) img[src$=\#gh-light-mode-only],
+.vscode-high-contrast-light img[src$=\#gh-dark-mode-only] {
+	display: none;
+}
+
+</style>
+            
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/markdown.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/highlight.css">
+<style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', system-ui, 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 14px;
+                line-height: 1.6;
+            }
+        </style>
+        <style>
+.task-list-item {
+    list-style-type: none;
+}
+
+.task-list-item-checkbox {
+    margin-left: -20px;
+    vertical-align: middle;
+    pointer-events: none;
+}
+</style>
+<style>
+:root {
+  --color-note: #0969da;
+  --color-tip: #1a7f37;
+  --color-warning: #9a6700;
+  --color-severe: #bc4c00;
+  --color-caution: #d1242f;
+  --color-important: #8250df;
+}
+
+</style>
+<style>
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-note: #2f81f7;
+    --color-tip: #3fb950;
+    --color-warning: #d29922;
+    --color-severe: #db6d28;
+    --color-caution: #f85149;
+    --color-important: #a371f7;
+  }
+}
+
+</style>
+<style>
+.markdown-alert {
+  padding: 0.5rem 1rem;
+  margin-bottom: 16px;
+  color: inherit;
+  border-left: .25em solid #888;
+}
+
+.markdown-alert>:first-child {
+  margin-top: 0
+}
+
+.markdown-alert>:last-child {
+  margin-bottom: 0
+}
+
+.markdown-alert .markdown-alert-title {
+  display: flex;
+  font-weight: 500;
+  align-items: center;
+  line-height: 1
+}
+
+.markdown-alert .markdown-alert-title .octicon {
+  margin-right: 0.5rem;
+  display: inline-block;
+  overflow: visible !important;
+  vertical-align: text-bottom;
+  fill: currentColor;
+}
+
+.markdown-alert.markdown-alert-note {
+  border-left-color: var(--color-note);
+}
+
+.markdown-alert.markdown-alert-note .markdown-alert-title {
+  color: var(--color-note);
+}
+
+.markdown-alert.markdown-alert-important {
+  border-left-color: var(--color-important);
+}
+
+.markdown-alert.markdown-alert-important .markdown-alert-title {
+  color: var(--color-important);
+}
+
+.markdown-alert.markdown-alert-warning {
+  border-left-color: var(--color-warning);
+}
+
+.markdown-alert.markdown-alert-warning .markdown-alert-title {
+  color: var(--color-warning);
+}
+
+.markdown-alert.markdown-alert-tip {
+  border-left-color: var(--color-tip);
+}
+
+.markdown-alert.markdown-alert-tip .markdown-alert-title {
+  color: var(--color-tip);
+}
+
+.markdown-alert.markdown-alert-caution {
+  border-left-color: var(--color-caution);
+}
+
+.markdown-alert.markdown-alert-caution .markdown-alert-title {
+  color: var(--color-caution);
+}
+
+</style>
+        
+        </head>
+        <body class="vscode-body vscode-light">
+            <h1 id="javascript">JavaScript</h1>
+<h3 id="javascript-的三种运行方式">JavaScript 的三种运行方式：</h3>
+<ul>
+<li>
+<p><strong>1. 嵌入 HTML 页面内部</strong><br>
+在 <code>&lt;script&gt;</code> 标签中直接编写代码：</p>
+<pre><code>&lt;script&gt;
+  alert(&quot;Hello, world!&quot;);
+&lt;/script&gt;
+</code></pre>
+</li>
+<li>
+<p><strong>2. 引入外部 .js 文件</strong><br>
+通过 <code>src</code> 属性引入外部 JS 文件：</p>
+<pre><code>&lt;script src=&quot;script.js&quot;&gt;&lt;/script&gt;
+</code></pre>
+</li>
+<li>
+<p><strong>3. 在控制台运行</strong><br>
+打开浏览器开发者工具（Chrome 按 <code>F12</code>）→ 进入 <strong>Console</strong> 面板 → 直接输入 JS 代码执行。</p>
+</li>
+</ul>
+<h3 id="变量与数据">变量与数据</h3>
+<p><span style="margin-left:1em "> <strong>1.JavaScript 里可以用三种方式声明变量：</strong></span></p>
+<ul>
+<li>
+<p><strong>var</strong>（老语法，了解即可）</p>
+</li>
+<li>
+<p><strong>let</strong>（推荐）</p>
+</li>
+<li>
+<p><strong>const</strong>（用于声明常量）</p>
+</li>
+</ul>
+<p><span style="margin-left:1em"><strong>2. 常见的数据类型</strong>
+</span></p>
+<ul>
+<li>字符串String</li>
+<li>数字Number</li>
+<li>布尔 Boolean</li>
+<li>空值 null</li>
+<li>未定义 undefined</li>
+<li>对象 Object</li>
+<li>数组 Array</li>
+</ul>
+<p><span style="margin-left:1em"><strong>3. 常用运算符分类</strong>
+</span></p>
+<ul>
+<li>算术运算符(+ - * \ % **)
+** : 幂运算符 2 ** 3=8</li>
+<li>赋值运算符</li>
+<li>比较运算符 (===严格相等)</li>
+<li>逻辑运算符</li>
+</ul>
+<h3 id="条件语句">条件语句</h3>
+<ul>
+<li>if语句</li>
+<li>if...else语句</li>
+<li>if ...else if...else</li>
+</ul>
+<h3 id="循环">循环</h3>
+<ul>
+<li>for循环</li>
+<li>while 循环</li>
+<li>do...while循环</li>
+<li>for...of 循环</li>
+<li>for...in 循环</li>
+</ul>
+<p><em><strong>break:跳出整个循环</strong></em>
+<em><strong>continue：跳出当前循环</strong></em></p>
+<h3 id="函数">函数</h3>
+<h4 id="函数声名方式">函数声名方式</h4>
+<p>(1)普通函数声明</p>
+<pre><code>function greet() {
+  console.log(&quot;你好，澈&quot;);
+}
+greet();  // 调用函数
+</code></pre>
+<p>(2)带参数的函数</p>
+<pre><code>function greet(name) {
+  console.log(&quot;你好，&quot; + name);
+}
+greet(&quot;舟舟&quot;);  // 输出：你好，舟舟
+</code></pre>
+<p>(3)返回值</p>
+<pre><code>function add(a, b) {
+  return a + b;
+}
+let result = add(3, 5);
+console.log(result);  // 输出 8
+</code></pre>
+<p>(4) <strong>函数表达式</strong></p>
+<pre><code>const sayHi = function(name) {
+  console.log(&quot;Hi, &quot; + name);
+};
+sayHi(&quot;澈&quot;);
+</code></pre>
+<p>与其他函数的区别：</p>
+<ul>
+<li>没有函数名</li>
+<li>必须在定义后才能调用 即没有函数提升</li>
+</ul>
+<p>(5) <strong>箭头函数</strong></p>
+<pre><code>const add = (a, b) =&gt; {
+  return a + b;
+};
+</code></pre>
+<p>简化写法：</p>
+<ul>
+<li>只有一个表达式<pre><code>const add = (a, b) =&gt; a + b;
+</code></pre>
+</li>
+<li>只有一个参数(可以省略括号)<pre><code>const square = x =&gt; x * x;
+</code></pre>
+</li>
+</ul>
+<p>箭头函数与普通函数的区别：</p>
+<ul>
+<li>普通函数：（1）this指针指向调用者（2）可以提升 （3）推荐用作方法</li>
+<li>箭头函数：（1）this指针指向上一级调用者 （2）不可以提升 （3） 不推荐用作方法，因为没有this指针</li>
+</ul>
+<h3 id="数组">数组</h3>
+<h4 id="数组的创建">数组的创建</h4>
+<pre><code>let arr1 = [1, 2, 3];
+let arr2 = [&quot;澈&quot;, &quot;舟舟&quot;, &quot;星河&quot;];
+let arr3 = [];  // 空数组
+</code></pre>
+<h4 id="访问数组中的元素">访问数组中的元素</h4>
+<pre><code>let names = [&quot;澈&quot;, &quot;舟舟&quot;];
+console.log(names[0]);  // 输出：澈
+console.log(names[1]);  // 输出：舟舟
+</code></pre>
+<ul>
+<li>索引从0开始。</li>
+<li>names[2]会返回undefined，因为不存在</li>
+</ul>
+<h4 id="修改数组元素">修改数组元素</h4>
+<pre><code>names[1] = &quot;星河&quot;;  // 把 &quot;舟舟&quot; 改成 &quot;星河&quot;
+</code></pre>
+<h4 id="数组常用属性和方法">数组常用属性和方法</h4>
+<ul>
+<li>arr.length —— 返回数组长</li>
+<li>arr.pop() —— 删除最后一个元素</li>
+<li>arr.shift() —— 删除第一个元素</li>
+<li>arr.unshift(value) —— 在开头添加元素</li>
+<li>arr.push(value) —— 在末尾添加元素</li>
+<li>arr.indexOf(value) —— 查找元素位置 ，没找到返回-1</li>
+<li>arr.includes(value) —— 查看是否包含元素，返回true或者false</li>
+<li>for, for...of,forEach() —— 遍历数组</li>
+</ul>
+<h4 id="数组遍历的方法">数组遍历的方法</h4>
+<h5 id="普通遍历">普通遍历</h5>
+<p>(1) for 循环</p>
+<pre><code>const arr = [1, 2, 3];
+for (let i = 0; i &lt; arr.length; i++) {
+  console.log(arr[i]);
+}
+</code></pre>
+<p>(2)for...of循环</p>
+<pre><code>for (const item of arr) {
+  console.log(item);
+}
+</code></pre>
+<h5 id="功能性遍历">功能性遍历</h5>
+<p>(3)forEach()
+对数组每个元素执行回调函数，没有返回值</p>
+<pre><code>arr.forEach((item, index, array) =&gt; {
+  console.log(item, index);
+});
+</code></pre>
+<p>(4)map()
+对每个元素执行回调，返回新数组</p>
+<pre><code>const doubled = arr.map(item =&gt; item * 2);
+// [2, 4, 6]
+</code></pre>
+<p>(5)filter()
+返回满足条件的元素组成的新数组</p>
+<pre><code>const evens = arr.filter(item =&gt; item % 2 === 0);
+// [2]
+</code></pre>
+<p>(6)reduce()
+将数组缩减为单个值</p>
+<pre><code>const sum = arr.reduce((acc, curr) =&gt; acc + curr, 0);
+// 6
+</code></pre>
+<p>(7)reduceRight()
+从右向左执行reduce</p>
+<pre><code>const flattened = [[0,1], [2,3]].reduceRight((a, b) =&gt; a.concat(b));
+// [2, 3, 0, 1]
+</code></pre>
+<h5 id="查找方法">查找方法</h5>
+<p>(8) find()
+返回第一个满足条件的元素</p>
+<pre><code>const found = arr.find(item =&gt; item &gt; 1);
+// 2
+</code></pre>
+<p>(9)findIndex()
+返回第一个满足条件的元素的索引</p>
+<pre><code>const index = arr.findIndex(item =&gt; item === 2);
+// 1
+</code></pre>
+<p>some()
+检查是否有元素满足条件</p>
+<pre><code>const hasEven = arr.some(item =&gt; item % 2 === 0);
+// true
+</code></pre>
+<p>every()
+检查所有元素是否满足条件</p>
+<pre><code>const allEven = arr.every(item =&gt; item % 2 === 0);
+// false
+</code></pre>
+<h3 id="对象">对象</h3>
+<h4 id="对象创建的方法">对象创建的方法</h4>
+<p>（1）对象字面量</p>
+<pre><code>let person = {
+  name: &quot;澈&quot;,
+  age: 22,
+  isCool: true
+};
+</code></pre>
+<p>(2)访问对象属性</p>
+<pre><code>console.log(person.name);   // 澈
+console.log(person[&quot;age&quot;]); // 22
+</code></pre>
+<ul>
+<li>对象访问用 .</li>
+<li>指针访问用 -&gt;</li>
+</ul>
+<p>(3)修改和添加属性</p>
+<pre><code>person.age = 23;            // 修改属性
+person.hobby = &quot;driving&quot;;   // 添加新属性
+</code></pre>
+<p>(4) 删除属性</p>
+<pre><code>delete person.isCool;
+</code></pre>
+<h4 id="遍历对象属性">遍历对象属性</h4>
+<pre><code>const person = {
+  name: 'Alice',
+  age: 25,
+  job: 'Engineer'
+};
+for (let key in person) {
+  console.log(key + &quot;: &quot; + person[key]);
+}
+</code></pre>
+<ul>
+<li>key : 属性名</li>
+<li>person[key] ：属性值</li>
+<li>for...in 用来遍历对象属性名</li>
+<li>用person[key]获取对应值</li>
+</ul>
+<p>对于以上代码有</p>
+<ol>
+<li>第一次迭代：<code>key = 'name'</code> → 输出 <code>&quot;name: Alice&quot;</code></li>
+<li>第二次迭代：<code>key = 'age'</code> → 输出 <code>&quot;age: 25&quot;</code></li>
+<li>第三次迭代：<code>key = 'job'</code> → 输出 <code>&quot;job: Engineer&quot;</code></li>
+</ol>
+<h4 id="方法对象中的函数">方法：对象中的函数</h4>
+<p>对象可以包含函数，称为方法</p>
+<pre><code>let person = {
+  name: &quot;澈&quot;,
+  sayHi: function() {
+    console.log(&quot;你好，我是&quot; + this.name);
+  }
+};
+
+person.sayHi();  // 调用方法
+</code></pre>
+<h4 id="this-在对象中的使用">this 在对象中的使用</h4>
+<ul>
+<li>this 是一个关键字，它指向当前调用该函数的对象。</li>
+<li>在对象的方法中，this 通常指向该对象本身。</li>
+</ul>
+<pre><code>let person = {
+  name: &quot;澈&quot;,
+  greet: function() {
+    console.log(&quot;你好，我是 &quot; + this.name);
+  }
+};
+
+person.greet();  // 输出：你好，我是 澈
+</code></pre>
+<p>当greet()被调用时，this指向person，因此输出 person. name.</p>
+<ul>
+<li>
+<p>1.3 this 在不同情况下的表现：</p>
+<p>a. 在对象方法中，this 指向该对象。</p>
+<p>b. 在普通函数中，this 指向全局对象（在浏览器中是 window，在严格模式下是 undefined）。</p>
+<p>c.在箭头函数中，this 会继承自外部函数的 this，这就是箭头函数与普通函数的一个重要区别。</p>
+</li>
+</ul>
+<pre><code>普通函数：
+let person = {
+  name: &quot;澈&quot;,
+  greet: function() {
+    console.log(&quot;你好，我是 &quot; + this.name);
+    setTimeout(function() {
+      console.log(this.name);  // 普通函数中的 this 指向全局对象
+    }, 1000);
+  }
+};
+
+person.greet();  // 输出：你好，我是 澈，然后输出 undefined
+</code></pre>
+<p>greet()属于对象，所以this指向person
+回调函数属于普通函数，所以this指向全局对象（window）</p>
+<pre><code>箭头函数
+let person = {
+  name: &quot;澈&quot;,
+  greet: function() {
+    console.log(&quot;你好，我是 &quot; + this.name);
+    setTimeout(() =&gt; {
+      console.log(this.name);  // 箭头函数中的 this 继承自 greet 函数
+    }, 1000);
+  }
+};
+
+person.greet();  // 输出：你好，我是 澈，然后输出 澈
+</code></pre>
+<p>greet()属于对象，所以this指向person；
+箭头函数不绑定自己的this，指向外层的this，这里的外层即是greet(),所以this指向person</p>
+<h4 id="对象嵌套">对象嵌套</h4>
+<pre><code>let company = {
+  name: &quot;澈科技&quot;,
+  address: {
+    city: &quot;北京&quot;,
+    street: &quot;朝阳区&quot;
+  },
+  employees: [
+    { name: &quot;舟舟&quot;, role: &quot;开发&quot; },
+    { name: &quot;星河&quot;, role: &quot;设计&quot; }
+  ]
+};
+
+console.log(company.address.city); // 输出：北京
+console.log(company.employees[0].name); // 输出：舟舟
+</code></pre>
+<ul>
+<li>
+<p>company.address 是一个嵌套对象，你可以通过 company.address.city 获取它的属性。</p>
+</li>
+<li>
+<p>company.employees 是一个数组，里面存放着多个对象。</p>
+</li>
+</ul>
+<h4 id="构造函数">构造函数</h4>
+<p>(1)构造函数的写法</p>
+<pre><code>function Person(name, age) {
+  this.name = name;
+  this.age = age;
+  this.greet = function() {
+    console.log(&quot;你好，我是 &quot; + this.name + &quot;，今年 &quot; + this.age + &quot; 岁&quot;);
+  };
+}
+
+let person1 = new Person(&quot;澈&quot;, 22);
+let person2 = new Person(&quot;舟舟&quot;, 21);
+
+person1.greet();  // 输出：你好，我是 澈，今年 22 岁
+person2.greet();  // 输出：你好，我是 舟舟，今年 21 岁
+</code></pre>
+<ul>
+<li>
+<p>Person 是一个构造函数，它用来创建一个具有 name、age 和 greet 方法的对象。</p>
+</li>
+<li>
+<p>使用 new 关键字可以创建多个 Person 对象。</p>
+</li>
+<li>
+<p>this 在构造函数中指向新创建的对象。</p>
+</li>
+</ul>
+<p>（2）构造函数的注意点</p>
+<ul>
+<li>
+<p>构造函数的首字母通常大写（这是约定俗成的规范）。</p>
+</li>
+<li>
+<p>使用 new 关键字时，JavaScript 会自动把构造函数中的 this 指向一个新的对象。</p>
+</li>
+<li>
+<p>如果不使用 new，构造函数的 this 会指向全局对象（在浏览器中是 window）。</p>
+</li>
+</ul>
+<h3 id="事件">事件</h3>
+<h4 id="关于事件">关于事件</h4>
+<p>事件是用户与网页交互时触发的行为，例如点击、键盘输入、表单提交等。</p>
+<h4 id="事件绑定">事件绑定</h4>
+<p>（1）通过HTML属性绑定事件（旧写法，不推荐）</p>
+<pre><code>&lt;button onclick=&quot;alert('按钮被点击了！')&quot;&gt;点击我&lt;/button&gt;
+</code></pre>
+<p>（2）DOM属性绑定（早期写法，也不推荐）</p>
+<pre><code>const btn = document.querySelector('#btn');//获取元素
+btn.onclick = function () {
+  alert('clicked');
+};
+</code></pre>
+<p>缺点：只能绑定一个函数，后面绑定的会覆盖前一个
+(3)现代写法（推荐）</p>
+<pre><code>const btn = document.querySelector('#btn');
+btn.addEventListener('click', function () {
+  alert('clicked');
+});
+</code></pre>
+<p>优点：（1）可以绑定多个处理器
+（2）支持事件冒泡和捕获</p>
+<h4 id="获取对象">获取对象</h4>
+<p>（1）querySelector()——返回单个元素
+(2)querySelectorAll() —— 返回NodeList
+（3）推荐的 DOM 操作方法</p>
+<p>现代浏览器支持一些更加高效和简洁的 DOM 操作方法，例如：</p>
+<p>（1）element.closest(selector)：获取最近的匹配的祖先元素（包括自身）。</p>
+<pre><code>&lt;body&gt;
+    &lt;ul&gt;
+        &lt;li&gt;&lt;a href=&quot;#&quot;&gt;111&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href=&quot;#&quot;&gt;222&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href=&quot;#&quot;&gt;333&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href=&quot;#&quot;&gt;444&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+    &lt;script&gt;
+        document.querySelector(&quot;ul&quot;).addEventListener(&quot;click&quot;,(event) =&gt; {
+  const link = event.target.closest(&quot;a&quot;); // 确保点击的是 &lt;a&gt; 或其子元素
+  if (!link) return; // 如果不是 &lt;a&gt;，直接退出
+
+  event.preventDefault(); // 阻止默认跳转（因为 href=&quot;#&quot;)
+  console.log(&quot;点击了链接，位置：&quot;, link.parentElement); // 输出对应的 &lt;li&gt;
+});
+    &lt;/script&gt;
+&lt;/body&gt;
+
+</code></pre>
+<p>link:得到具体的a元素
+link.parentElement:得到link的父元素，也就是li
+（2）element.matches(selector)：检查当前元素是否匹配指定的 CSS 选择器。</p>
+<pre><code>// 检查点击的是否是一个带有特定 class 的 &lt;a&gt;
+document.querySelector(&quot;ul&quot;).addEventListener(&quot;click&quot;, (event) =&gt; {
+  if (event.target.matches(&quot;a.active&quot;)) { // 必须是 &lt;a class=&quot;active&quot;&gt;
+    event.preventDefault();
+    console.log(&quot;点击了高亮链接&quot;);
+  }
+});
+</code></pre>
+<h4 id="事件监听">事件监听</h4>
+<h5 id="绑定事件">绑定事件</h5>
+<pre><code>let button = document.querySelector(&quot;.myButton&quot;);
+button.addEventListener(&quot;click&quot;, function() {
+  alert(&quot;按钮被点击了！&quot;);
+});
+</code></pre>
+<p>addEventListener可以在一个元素绑定多个事件，而不会覆盖前面的</p>
+<h5 id="移除事件">移除事件</h5>
+<pre><code>function handleClick() {
+  alert(&quot;按钮被点击了！&quot;);
+}
+let button = document.querySelector(&quot;.myButton&quot;);
+button.addEventListener(&quot;click&quot;, handleClick);
+
+// 移除事件
+button.removeEventListener(&quot;click&quot;, handleClick);
+</code></pre>
+<p>常见的事件类型</p>
+<ul>
+<li>click ——点击</li>
+<li>dblclick —— 双击</li>
+<li>mouseover —— 鼠标悬停</li>
+<li>mouseout —— 鼠标离开</li>
+<li>keydown —— 按下键盘按键</li>
+<li>keyup —— 键盘按键释放</li>
+<li>focus —— 获得焦点</li>
+<li>blur ——失去焦点</li>
+<li>submit—— 提交表单</li>
+<li>change —— 值改变（表单事件）</li>
+<li>input —— 用户输入时立即触发</li>
+</ul>
+<h4 id="事件对象">事件对象</h4>
+<p>事件触发时，会自动生成一个事件对象，这个对象包含了事件的详细信息。常用的属性有：</p>
+<ul>
+<li>
+<p>event.target：触发事件的元素。</p>
+</li>
+<li>
+<p>event.type：事件的类型（如：click）。</p>
+</li>
+<li>
+<p>event.preventDefault()：阻止事件的默认行为。</p>
+</li>
+<li>
+<p>event.stopPropagation()：阻止事件的冒泡。</p>
+</li>
+</ul>
+<pre><code>let button = document.querySelector(&quot;.myButton&quot;);
+button.addEventListener(&quot;click&quot;, function(event) {
+  console.log(event.target);  // 输出触发事件的元素
+  console.log(event.type);    // 输出事件类型：click
+  event.preventDefault();    // 阻止默认行为（如链接跳转）
+});
+</code></pre>
+<h4 id="事件监听器的现代写法">事件监听器的现代写法</h4>
+<p>（1）使用箭头函数</p>
+<pre><code>document.querySelector(&quot;.myButton&quot;).addEventListener(&quot;click&quot;, (event) =&gt; {
+  alert(&quot;按钮被点击了！&quot;);
+});
+</code></pre>
+<h4 id="事件委托">事件委托</h4>
+<p>事件委托是指将事件绑定到父元素而不是子元素上，利用事件冒泡机制来处理多个子元素的事件。这样可以提高性能，减少 DOM 元素的绑定。</p>
+<pre><code>&lt;ul id=&quot;myList&quot;&gt;
+  &lt;li&gt;Item 1&lt;/li&gt;
+  &lt;li&gt;Item 2&lt;/li&gt;
+  &lt;li&gt;Item 3&lt;/li&gt;
+&lt;/ul&gt;
+&lt;script&gt;
+  const list = document.getElementById('myList');
+  list.addEventListener('click', function(event) {
+    if (event.target.tagName === 'LI') {
+      alert('List item clicked: ' + event.target.textContent);
+    }
+  });
+&lt;/script&gt;
+</code></pre>
+<p><code>event.target</code>:表示实际被点击的元素
+<code>event.target.textContent</code>:返回被点击元素及其后代元素的所有纯文本内容</p>
+<p>在这个例子中，我们没有为每个按钮绑定事件，而是将事件绑定到父元素 parentDiv 上，然后通过 event.target 来判断点击的是否是 button 元素。</p>
+<p>这种方式可以在动态添加子元素时，仍然能够正常工作。</p>
+<h5 id="使用oncecapturepassive选项">使用once,capture,passive选项</h5>
+<p>addEventListener 方法有一些额外的选项，允许你更细粒度地控制事件监听的行为。</p>
+<p>once：指定事件监听器在触发一次后就被移除。</p>
+<p>capture：指定事件是否在捕获阶段触发（默认为冒泡阶段）。</p>
+<p>passive：告知浏览器事件不会调用 preventDefault()，有助于优化滚动等性能密集型操作。</p>
+<p>(1)使用once</p>
+<pre><code>document.querySelector(&quot;.myButton&quot;).addEventListener(&quot;click&quot;, () =&gt; {
+  alert(&quot;按钮被点击了！&quot;);
+}, { once: true });
+</code></pre>
+<p>once: true :表示事件只会触发一次，之后自动移除事件监听器。</p>
+<p>（2）使用capture，passive</p>
+<pre><code>document.querySelector(&quot;.myButton&quot;).addEventListener(&quot;click&quot;, () =&gt; {
+  alert(&quot;按钮被点击了！&quot;);
+}, { capture: true, passive: true });
+</code></pre>
+<p>capture: true:表示在捕获阶段触发；
+passive: true：提示浏览器事件不会调用 preventDefault()，因此优化滚动等性能密集型操作</p>
+<h2 id="异步编程">异步编程</h2>
+<h3 id="回调函数最早的">回调函数(最早的)</h3>
+<pre><code>setTimeout(function() {
+  console.log(&quot;异步任务完成&quot;);
+}, 1000);
+</code></pre>
+<h4 id="promise推荐使用">Promise(推荐使用)</h4>
+<p>Promise 是对回调函数的一种改进。它可以链式调用，避免了回调地狱。</p>
+<pre><code>let promise = new Promise(function(resolve, reject) {
+  setTimeout(function() {
+    resolve(&quot;异步任务完成&quot;);
+  }, 1000);
+});
+
+promise.then(function(result) {
+  console.log(result);  // 输出：异步任务完成
+}).catch(function(error) {
+  console.log(error);
+});
+</code></pre>
+<p>resolve 表示操作成功，reject 表示操作失败。</p>
+<p>.then() 用来处理成功的结果，.catch() 用来处理错误。</p>
+<h4 id="asyncawait最新写法推荐">async/await(最新写法，推荐)</h4>
+<p>async/await 是 Promise 的语法糖，它使得异步代码看起来像同步代码，简洁且易于理解。</p>
+<pre><code>async function fetchData() {
+  let promise = new Promise(function(resolve, reject) {
+    setTimeout(() =&gt; resolve(&quot;异步任务完成&quot;), 1000);
+  });
+
+  let result = await promise;  // 等待 Promise 完成
+  console.log(result);  // 输出：异步任务完成
+}
+
+fetchData();
+</code></pre>
+<p>async 修饰函数，表示该函数是一个异步函数。</p>
+<p>await 用来等待 Promise 的结果，类似于同步操作。</p>
+<p>await 只能在 async 函数中使用。</p>
+<h3 id="异步编程中的错误处理">异步编程中的错误处理</h3>
+<h4 id="使用-trycatch-捕获异常asyncawait">使用 try...catch 捕获异常（async/await）</h4>
+<pre><code>async function fetchData() 
+{
+  try 
+  {
+    let promise = new Promise(function(resolve, reject) 
+    {
+      setTimeout(() =&gt; reject(&quot;出错了！&quot;), 1000);
+    });
+
+    let result = await promise;  // 等待 Promise 完成
+    console.log(result);
+  } catch (error) 
+  {
+    console.log(error);  // 输出：出错了！
+  }
+}
+
+fetchData();
+</code></pre>
+<p>new Promise(function(resolve, reject)</p>
+<ul>
+<li>new Promise((resolve) =&gt; { ... })	✅ 合法	常用，适合只需要成功的情况</li>
+<li>new Promise((_, reject) =&gt; { ... })	✅ 合法	罕见，适合只处理错误（不建议这样）</li>
+<li>new Promise(() =&gt; { ... })	✅ 合法	不推荐，会导致 Promise 永远 pending</li>
+<li>new Promise((resolve, reject) =&gt; { ... })	✅ 合法	标准写法，推荐
+使用 try...catch 结构来捕获异常。</li>
+</ul>
+<p>如果 await 等待的 Promise 被拒绝，错误将被 catch 捕获。
+该代码运行步骤：</p>
+<pre><code>fetchData() →
+  创建 Promise →
+    await 暂停 →
+      1秒后 reject →
+        Promise 被拒绝 →
+          抛出异常 →
+            try...catch 捕获 →
+              打印错误
+</code></pre>
+<h4 id="asyncawait进阶用法">async/await进阶用法</h4>
+<h5 id="使用-trycatch-捕获多个异步操作的错误">使用 try...catch 捕获多个异步操作的错误</h5>
+<p>假设有多个异步任务需要执行，而我们希望在遇到错误时能够捕获并处理它们。</p>
+<pre><code>async function fetchData() {
+  try {
+    let response1 = await fetch('https://api.example.com/data1');
+    let data1 = await response1.json();
+    
+    let response2 = await fetch('https://api.example.com/data2');
+    let data2 = await response2.json();
+    
+    console.log(data1, data2);
+  } catch (error) {
+    console.log('发生错误:', error);
+  }
+}
+
+fetchData();
+</code></pre>
+<p>运行步骤：</p>
+<ol>
+<li>调用 fetchData()</li>
+</ol>
+<pre><code>fetchData(); // 开始执行异步函数
+</code></pre>
+<ol start="2">
+<li>进入 fetchData 函数
+由于函数声明为 async，它会返回一个 Promise，但内部可以用 await 暂停执行。</li>
+<li>发起第一个请求 data1<pre><code>let response1 = await fetch('https://api.example.com/data1');
+</code></pre>
+<ul>
+<li>fetch 发起网络请求，返回一个 Promise（表示请求是否成功）。</li>
+<li>await 暂停函数执行，直到请求完成：
+如果成功，response1 变为 HTTP 响应对象（包含状态码、headers 等）。
+如果失败，直接跳转到 catch 块。
+4.解析第一个响应为 JSON</li>
+</ul>
+</li>
+</ol>
+<pre><code>let data1 = await response1.json();
+</code></pre>
+<ul>
+<li>
+<p>response1.json() 读取响应体并解析为 JSON（也是一个 Promise）。</p>
+</li>
+<li>
+<p>await 再次暂停，直到解析完成，结果存入 data1。
+5.发起第二个请求</p>
+</li>
+</ul>
+<ol start="6">
+<li>解析第二个响应为 JSON</li>
+<li>打印结果</li>
+<li>错误处理（如果任何步骤失败）
+上述代码因为域名不存在，所以失败，然后选择可以用免费的域名</li>
+</ol>
+<pre><code>async function fetchData() {
+  try {
+    // 使用真实可访问的测试 API
+    let response1 = await fetch('https://jsonplaceholder.typicode.com/todos/1');
+    let data1 = await response1.json();
+    
+    let response2 = await fetch('https://jsonplaceholder.typicode.com/posts/1');
+    let data2 = await response2.json();
+    
+    console.log(data1, data2); // 打印真实数据
+  } catch (error) {
+    console.log('发生错误:', error);
+  }
+}
+
+fetchData();
+</code></pre>
+<h5 id="使用多个-trycatch-捕获每个异步操作的错误">使用多个 try...catch 捕获每个异步操作的错误</h5>
+<p>如果你希望每个异步操作的错误被独立捕获，可以在每个异步操作上使用 try...catch。</p>
+<pre><code>async function fetchData() {
+  try {
+    let response1 = await fetch('https://api.example.com/data1');
+    let data1 = await response1.json();
+    console.log(data1);
+  } catch (error) {
+    console.log('获取 data1 时发生错误:', error);
+  }
+
+  try {
+    let response2 = await fetch('https://api.example.com/data2');
+    let data2 = await response2.json();
+    console.log(data2);
+  } catch (error) {
+    console.log('获取 data2 时发生错误:', error);
+  }
+}
+
+fetchData();
+</code></pre>
+<p>每个异步操作都有独立的错误处理，这样可以确保一个操作的失败不会影响其他操作。</p>
+<h5 id="promiseall-和-promiserace和promiseallsettled">Promise.all() 和 Promise.race()和Promise.allSettled</h5>
+<p>Promise.all() 和 Promise.race() 是处理多个 Promise 的两种常见方法。
+(1)Promise.all()
+Promise.all() 用于并行执行多个异步操作，并在所有操作都完成时执行回调。</p>
+<pre><code>let promise1 = new Promise((resolve) =&gt; setTimeout(resolve, 1000, '任务1'));
+let promise2 = new Promise((resolve) =&gt; setTimeout(resolve, 2000, '任务2'));
+
+Promise.all([promise1, promise2]).then((results) =&gt; {
+  console.log(results);  // 输出：[&quot;任务1&quot;, &quot;任务2&quot;]
+});
+
+Promise.all()
+</code></pre>
+<p>Promise.all() 会等待所有的 Promise 都成功，返回一个包含所有结果的数组。</p>
+<pre><code>Promise.all()
+
+async function fetchAllData() {
+  let promise1 = fetch('https://api.example.com/data1').then(response =&gt; response.json());
+  let promise2 = fetch('https://api.example.com/data2').then(response =&gt; response.json());
+
+  let [data1, data2] = await Promise.all([promise1, promise2]);
+  console.log(data1, data2);
+}
+
+fetchAllData();
+</code></pre>
+<p>Promise.all() 会等待所有的 Promise 完成，且当任意一个 Promise 失败时，整个 Promise 链会立即被拒绝。</p>
+<h5 id="promiseallsettled">Promise.allSettled</h5>
+<p>并发执行多个任务</p>
+<pre><code>Promise.allSettled()
+
+async function fetchAllData() {
+  let promise1 = fetch('https://api.example.com/data1').then(response =&gt; response.json());
+  let promise2 = fetch('https://api.example.com/data2').then(response =&gt; response.json());
+
+  let results = await Promise.allSettled([promise1, promise2]);
+  results.forEach(result =&gt; {
+    if (result.status === 'fulfilled') {
+      console.log('成功:', result.value);
+    } else {
+      console.log('失败:', result.reason);
+    }
+  });
+}
+
+fetchAllData();
+</code></pre>
+<p>Promise.allSettled() 会等待所有的 Promise 完成，并返回每个 Promise 的结果，不管成功还是失败。</p>
+<h5 id="promiserace">Promise.race()</h5>
+<p>用于等待多个 Promise 中的第一个完成的操作。
+（1）任务都是resolve</p>
+<pre><code>let promise1 = new Promise((resolve) =&gt; setTimeout(resolve, 1000, '任务1'));
+let promise2 = new Promise((resolve) =&gt; setTimeout(resolve, 500, '任务2'));
+
+Promise.race([promise1, promise2]).then((result) =&gt; {
+  console.log(result);  // 输出：任务2
+});
+</code></pre>
+<p>Promise.race() 会返回第一个完成的 Promise。（无论成功还是失败）
+（2）任务都是reject</p>
+<pre><code>let promise1 = new Promise((_, reject) =&gt; setTimeout(reject, 1000, '任务1失败'));
+let promise2 = new Promise((_, reject) =&gt; setTimeout(reject, 500, '任务2失败'));
+
+Promise.race([promise1, promise2]).then(
+  (result) =&gt; {
+    console.log('成功:', result);
+  },
+  (error) =&gt; {
+    console.log('失败:', error);  // 输出：失败: 任务2失败
+  }
+);
+</code></pre>
+<p>(3)混合resolve和reject</p>
+<pre><code>let promise1 = new Promise((_, reject) =&gt; setTimeout(reject, 1000, '任务1失败'));
+let promise2 = new Promise((resolve) =&gt; setTimeout(resolve, 500, '任务2成功'));
+
+Promise.race([promise1, promise2]).then(
+  (result) =&gt; {
+    console.log('成功:', result);  // 输出：成功: 任务2成功
+  },
+  (error) =&gt; {
+    console.log('失败:', error);
+  }
+);
+</code></pre>
+<p>Promise.race() 谁先有结果（resolve 或 reject），就以那个为准。</p>
+<h4 id="promiseallsettled-1">Promise.allSettled()</h4>
+<p>Promise.allSettled() 方法接收一个 Promise 数组，并返回一个新的 Promise，当所有的 Promise 完成时，不管是成功还是失败，都会返回每个 Promise 的结果。</p>
+<pre><code>let promise1 = Promise.resolve(42);
+let promise2 = new Promise((resolve, reject) =&gt; setTimeout(reject, 1000, '失败'));
+let promise3 = Promise.resolve(88);
+
+Promise.allSettled([promise1, promise2, promise3]).then(results =&gt; {
+  console.log(results);
+  // 输出：
+  // [
+  //   { status: 'fulfilled', value: 42 },
+  //   { status: 'rejected', reason: '失败' },
+  //   { status: 'fulfilled', value: 88 }
+  // ]
+});
+</code></pre>
+<p>status可以是fulfilled(已完成)或者rejected(已拒绝)</p>
+<h2 id="模块化开发">模块化开发</h2>
+<h3 id="导出export">导出(export)</h3>
+<p>（1）命名导出
+命名导出允许你导出多个变量、函数或类。每个导出的内容都需要指定名称，导入时必须使用相同的名称。</p>
+<pre><code>// file1.js
+export const myVar = 'Hello, world!';
+export function myFunction() {
+  console.log('This is a function.');
+}
+export class MyClass {
+  constructor() {
+    this.name = 'MyClass';
+  }
+}
+
+</code></pre>
+<p>（2）默认导出()
+默认导出允许你导出一个单一的值，通常是一个类、对象或函数。导入时可以使用任何名称。</p>
+<pre><code>// file1.js
+export default function() {
+  console.log('This is the default export!');
+}
+</code></pre>
+<p>(3)重命名导出
+在导出时，你可以选择重新命名变量、函数或类。</p>
+<pre><code>// file1.js
+const myVar = 'Hello, world!';
+export { myVar as greeting };
+</code></pre>
+<p>(4)一次性导出多个内容
+你可以将多个内容一次性导出，避免多次使用 export 语法。</p>
+<pre><code>// file1.js
+const myVar = 'Hello, world!';
+const myFunction = () =&gt; {
+  console.log('This is a function.');
+};
+
+export { myVar, myFunction };
+</code></pre>
+<h3 id="导入">导入</h3>
+<p>（1）导入命名导出的内容
+导入时，使用花括号包裹你需要的导出内容。导入的名称必须与导出的名称一致。</p>
+<pre><code>// file2.js
+import { myVar, myFunction } from './file1.js';
+
+console.log(myVar);       // Hello, world!
+myFunction();             // This is a function.
+</code></pre>
+<p>(2)导入默认导出的内容
+导入默认导出时，你可以为其指定任何名称。</p>
+<pre><code>// file2.js
+import myFunction from './file1.js';
+
+myFunction();  // 输出：This is the default export!
+</code></pre>
+<p>(3)导入所有内容（Import All）
+你可以使用 * as 导入模块中的所有导出内容，并将它们作为一个对象来使用</p>
+<pre><code>// file2.js
+import * as myModule from './file1.js';
+
+console.log(myModule.myVar);     // Hello, world!
+myModule.myFunction();           // This is a function.
+</code></pre>
+<p>(4) 导入并重命名内容
+你可以导入时重命名内容，特别是当导出的名称与你的本地变量名冲突时。</p>
+<pre><code>// file2.js
+import { myVar as greeting } from './file1.js';
+
+console.log(greeting);  // Hello, world!
+</code></pre>
+<p>(5)动态导入
+可以使用 import() 函数来动态加载模块。import() 返回一个 Promise，适合按需加载模块或实现懒加载。</p>
+<ul>
+<li>Promise.then()链式调用</li>
+</ul>
+<pre><code>// 动态导入模块
+import('./file1.js')
+  .then(module =&gt; {
+    console.log(module.myVar);  // Hello, world!
+    module.myFunction();        // This is a function.
+  })
+  .catch(err =&gt; console.error('模块加载失败:', err));
+</code></pre>
+<p>这里的err表示catch捕获的错误对象</p>
+<ul>
+<li>async / await方式</li>
+</ul>
+<pre><code>// app.js
+async function loadModule() {
+  try {
+    const mathModule = await import('./math.js');
+    console.log(mathModule.pi);  // 输出：3.14159
+  } catch (err) {
+    console.error('模块加载失败:', err);
+  }
+}
+
+loadModule();
+</code></pre>
+<p>（6）默认导出与命名导出同时使用
+一个模块可以同时使用 默认导出 和 命名导出。默认导出适用于你想要作为模块主内容的情况，而命名导出适用于其他附加的内容。</p>
+<pre><code>// file1.js
+export const myVar = 'Hello, world!';
+export default function() {
+  console.log('This is the default export!');
+}
+</code></pre>
+<pre><code>// file2.js
+import myFunction, { myVar } from './file1.js';
+
+console.log(myVar);       // Hello, world!
+myFunction();             // This is the default export!
+</code></pre>
+<h4 id="模块的扩展名">模块的扩展名</h4>
+<p>在浏览器环境中，模块文件的扩展名通常是 .js。</p>
+<pre><code>&lt;script type=&quot;module&quot;&gt;
+  import { pi } from './math.js';
+  console.log(pi);  // 输出：3.14159
+&lt;/script&gt;
+</code></pre>
+<p>在浏览器中，&lt; script type=&quot;module&quot;&gt; 会告诉浏览器该文件是一个模块。浏览器会自动处理模块间的依赖关系。</p>
+<h2 id="面向对象编程oop">面向对象编程(OOP)</h2>
+<h4 id="创建对象">创建对象</h4>
+<p>（1）使用字面量创建对象</p>
+<pre><code>let person = {
+  name: &quot;John&quot;,
+  age: 30,
+  greet: function() {
+    console.log(&quot;Hello, &quot; + this.name);
+  }
+};
+</code></pre>
+<ul>
+<li>最简单的方式，直接通过 {} 创建对象。</li>
+<li>this 关键字指向当前对象，访问对象的属性和方法。</li>
+</ul>
+<p>(2)使用构造函数创建对象</p>
+<pre><code>function Person(name, age) {
+  this.name = name;
+  this.age = age;
+  this.greet = function() {
+    console.log(&quot;Hello, &quot; + this.name);
+  };
+}
+
+let john = new Person(&quot;John&quot;, 30);
+john.greet();  // 输出：Hello, John
+</code></pre>
+<ul>
+<li>
+<p>使用构造函数来创建对象，每个实例都会拥有构造函数中定义的属性和方法。</p>
+</li>
+<li>
+<p>通过 new 关键字来创建实例。</p>
+</li>
+</ul>
+<h3 id="类">类</h3>
+<pre><code>class Person {
+  constructor(name, age) {
+    this.name = name;
+    this.age = age;
+  }
+
+  greet() {
+    console.log(&quot;Hello, &quot; + this.name);
+  }
+}
+
+let john = new Person(&quot;John&quot;, 30);
+john.greet();  // 输出：Hello, John
+</code></pre>
+<ul>
+<li>
+<p>constructor 是一个特殊的方法，用来初始化对象的属性。</p>
+</li>
+<li>
+<p>类中的其他方法定义在 constructor 之外。</p>
+</li>
+</ul>
+<h4 id="继承">继承</h4>
+<ul>
+<li>
+<p>extends 关键字表示继承，子类可以访问父类的属性和方法。</p>
+</li>
+<li>
+<p>使用 super 调用父类的构造函数和方法。</p>
+</li>
+</ul>
+<pre><code>class Animal {
+  constructor(name) {
+    this.name = name;
+  }
+
+  speak() {
+    console.log(this.name + &quot; makes a sound&quot;);
+  }
+}
+
+class Dog extends Animal {
+  constructor(name, breed) {
+    super(name);  // 调用父类的构造函数
+    this.breed = breed;
+  }
+
+  speak() {
+    console.log(this.name + &quot; barks&quot;);
+  }
+}
+
+let dog = new Dog(&quot;Buddy&quot;, &quot;Golden Retriever&quot;);
+dog.speak();  // 输出：Buddy barks
+</code></pre>
+<h4 id="封装">封装</h4>
+<p>封装是 OOP 的核心思想之一，指的是将对象的属性和方法封装到一个类中，外界只能通过类提供的公共方法访问这些属性和方法</p>
+<pre><code>class Car {
+  constructor(brand, model) {
+    this.brand = brand;
+    this.model = model;
+    let speed = 0;  // 私有属性
+
+    this.accelerate = function() {
+      speed += 10;
+      console.log(&quot;Speed: &quot; + speed + &quot; km/h&quot;);
+    };
+
+    this.getSpeed = function() {
+      return speed;//外界可以访问私有数据的一个接口
+    };
+  }
+}
+
+let car = new Car(&quot;Toyota&quot;, &quot;Corolla&quot;);
+car.accelerate();  // 输出：Speed: 10 km/h
+console.log(car.getSpeed());  // 输出：10
+</code></pre>
+
+            
+            
+        </body>
+        </html>

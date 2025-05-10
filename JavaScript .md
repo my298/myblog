@@ -298,6 +298,7 @@ person.greet();  // 输出：你好，我是 澈
   b. 在普通函数中，this 指向全局对象（在浏览器中是 window，在严格模式下是 undefined）。
 
    c.在箭头函数中，this 会继承自外部函数的 this，这就是箭头函数与普通函数的一个重要区别。
+
 ```
 普通函数：
 let person = {
@@ -312,6 +313,7 @@ let person = {
 
 person.greet();  // 输出：你好，我是 澈，然后输出 undefined
 ```
+
 greet()属于对象，所以this指向person
 回调函数属于普通函数，所以this指向全局对象（window）
 ```
@@ -370,6 +372,7 @@ let person2 = new Person("舟舟", 21);
 person1.greet();  // 输出：你好，我是 澈，今年 22 岁
 person2.greet();  // 输出：你好，我是 舟舟，今年 21 岁
 ```
+
 * Person 是一个构造函数，它用来创建一个具有 name、age 和 greet 方法的对象。
 
 * 使用 new 关键字可以创建多个 Person 对象。
@@ -391,24 +394,30 @@ person2.greet();  // 输出：你好，我是 舟舟，今年 21 岁
 事件是用户与网页交互时触发的行为，例如点击、键盘输入、表单提交等。
 #### 事件绑定
 （1）通过HTML属性绑定事件（旧写法，不推荐）
+
 ```
 <button onclick="alert('按钮被点击了！')">点击我</button>
 ```
+
 （2）DOM属性绑定（早期写法，也不推荐）
+
 ```
 const btn = document.querySelector('#btn');//获取元素
 btn.onclick = function () {
   alert('clicked');
 };
 ```
+
 缺点：只能绑定一个函数，后面绑定的会覆盖前一个
 (3)现代写法（推荐）
+
 ```
 const btn = document.querySelector('#btn');
 btn.addEventListener('click', function () {
   alert('clicked');
 });
 ```
+
 优点：（1）可以绑定多个处理器
 （2）支持事件冒泡和捕获
 #### 获取对象
@@ -419,6 +428,7 @@ btn.addEventListener('click', function () {
 现代浏览器支持一些更加高效和简洁的 DOM 操作方法，例如：
 
 （1）element.closest(selector)：获取最近的匹配的祖先元素（包括自身）。
+
 ```
 <body>
     <ul>
@@ -437,11 +447,12 @@ btn.addEventListener('click', function () {
 });
     </script>
 </body>
-
 ```
+
 link:得到具体的a元素
 link.parentElement:得到link的父元素，也就是li
 （2）element.matches(selector)：检查当前元素是否匹配指定的 CSS 选择器。
+
 ```
 // 检查点击的是否是一个带有特定 class 的 <a>
 document.querySelector("ul").addEventListener("click", (event) => {
@@ -451,6 +462,7 @@ document.querySelector("ul").addEventListener("click", (event) => {
   }
 });
 ```
+
 #### 事件监听
 ##### 绑定事件
 ```
