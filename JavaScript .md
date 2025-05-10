@@ -559,8 +559,8 @@ document.querySelector(".myButton").addEventListener("click", () => {
 ```
 capture: true:表示在捕获阶段触发；
 passive: true：提示浏览器事件不会调用 preventDefault()，因此优化滚动等性能密集型操作
-### 异步编程
-#### 回调函数(最早的)
+## 异步编程
+### 回调函数(最早的)
 ```
 setTimeout(function() {
   console.log("异步任务完成");
@@ -605,8 +605,8 @@ await 用来等待 Promise 的结果，类似于同步操作。
 
 await 只能在 async 函数中使用。
 
-#### 异步编程中的错误处理
-##### 使用 try...catch 捕获异常（async/await）
+### 异步编程中的错误处理
+#### 使用 try...catch 捕获异常（async/await）
 ```
 async function fetchData() 
 {
@@ -646,7 +646,99 @@ fetchData() →
             try...catch 捕获 →
               打印错误
 ```
-##### Promise.all() 和 Promise.race()
+#### async/await进阶用法
+##### 使用 try...catch 捕获多个异步操作的错误
+
+假设有多个异步任务需要执行，而我们希望在遇到错误时能够捕获并处理它们。
+```
+async function fetchData() {
+  try {
+    let response1 = await fetch('https://api.example.com/data1');
+    let data1 = await response1.json();
+    
+    let response2 = await fetch('https://api.example.com/data2');
+    let data2 = await response2.json();
+    
+    console.log(data1, data2);
+  } catch (error) {
+    console.log('发生错误:', error);
+  }
+}
+
+fetchData();
+```
+运行步骤：
+1. 调用 fetchData()
+  ```
+  fetchData(); // 开始执行异步函数
+  ```
+2. 进入 fetchData 函数
+由于函数声明为 async，它会返回一个 Promise，但内部可以用 await 暂停执行。
+3. 发起第一个请求 data1
+   ```
+   let response1 = await fetch('https://api.example.com/data1');
+   ```
+   * fetch 发起网络请求，返回一个 Promise（表示请求是否成功）。
+   * await 暂停函数执行，直到请求完成：
+  如果成功，response1 变为 HTTP 响应对象（包含状态码、headers 等）。
+  如果失败，直接跳转到 catch 块。
+4.解析第一个响应为 JSON
+  ```
+  let data1 = await response1.json();
+  ```
+  * response1.json() 读取响应体并解析为 JSON（也是一个 Promise）。
+
+  * await 再次暂停，直到解析完成，结果存入 data1。
+5.发起第二个请求
+6. 解析第二个响应为 JSON
+7. 打印结果
+8. 错误处理（如果任何步骤失败）
+上述代码因为域名不存在，所以失败，然后选择可以用免费的域名
+```
+async function fetchData() {
+  try {
+    // 使用真实可访问的测试 API
+    let response1 = await fetch('https://jsonplaceholder.typicode.com/todos/1');
+    let data1 = await response1.json();
+    
+    let response2 = await fetch('https://jsonplaceholder.typicode.com/posts/1');
+    let data2 = await response2.json();
+    
+    console.log(data1, data2); // 打印真实数据
+  } catch (error) {
+    console.log('发生错误:', error);
+  }
+}
+
+fetchData();
+```
+##### 使用多个 try...catch 捕获每个异步操作的错误
+
+如果你希望每个异步操作的错误被独立捕获，可以在每个异步操作上使用 try...catch。
+```
+async function fetchData() {
+  try {
+    let response1 = await fetch('https://api.example.com/data1');
+    let data1 = await response1.json();
+    console.log(data1);
+  } catch (error) {
+    console.log('获取 data1 时发生错误:', error);
+  }
+
+  try {
+    let response2 = await fetch('https://api.example.com/data2');
+    let data2 = await response2.json();
+    console.log(data2);
+  } catch (error) {
+    console.log('获取 data2 时发生错误:', error);
+  }
+}
+
+fetchData();
+```
+每个异步操作都有独立的错误处理，这样可以确保一个操作的失败不会影响其他操作。
+
+##### Promise.all() 和 Promise.race()和Promise.allSettled
 
 Promise.all() 和 Promise.race() 是处理多个 Promise 的两种常见方法。
 (1)Promise.all()
@@ -662,7 +754,42 @@ Promise.all([promise1, promise2]).then((results) => {
 Promise.all()
 ```
 Promise.all() 会等待所有的 Promise 都成功，返回一个包含所有结果的数组。
+```
+Promise.all()
 
+async function fetchAllData() {
+  let promise1 = fetch('https://api.example.com/data1').then(response => response.json());
+  let promise2 = fetch('https://api.example.com/data2').then(response => response.json());
+
+  let [data1, data2] = await Promise.all([promise1, promise2]);
+  console.log(data1, data2);
+}
+
+fetchAllData();
+```
+Promise.all() 会等待所有的 Promise 完成，且当任意一个 Promise 失败时，整个 Promise 链会立即被拒绝。
+##### Promise.allSettled
+并发执行多个任务
+```
+Promise.allSettled()
+
+async function fetchAllData() {
+  let promise1 = fetch('https://api.example.com/data1').then(response => response.json());
+  let promise2 = fetch('https://api.example.com/data2').then(response => response.json());
+
+  let results = await Promise.allSettled([promise1, promise2]);
+  results.forEach(result => {
+    if (result.status === 'fulfilled') {
+      console.log('成功:', result.value);
+    } else {
+      console.log('失败:', result.reason);
+    }
+  });
+}
+
+fetchAllData();
+```
+Promise.allSettled() 会等待所有的 Promise 完成，并返回每个 Promise 的结果，不管成功还是失败。
 ##### Promise.race() 
 用于等待多个 Promise 中的第一个完成的操作。
 （1）任务都是resolve
@@ -674,7 +801,7 @@ Promise.race([promise1, promise2]).then((result) => {
   console.log(result);  // 输出：任务2
 });
 ```
-Promise.race() 会返回第一个完成的 Promise。
+Promise.race() 会返回第一个完成的 Promise。（无论成功还是失败）
 （2）任务都是reject
 ```
 let promise1 = new Promise((_, reject) => setTimeout(reject, 1000, '任务1失败'));
@@ -705,6 +832,25 @@ Promise.race([promise1, promise2]).then(
 ```
 Promise.race() 谁先有结果（resolve 或 reject），就以那个为准。
 
+#### Promise.allSettled()
+
+Promise.allSettled() 方法接收一个 Promise 数组，并返回一个新的 Promise，当所有的 Promise 完成时，不管是成功还是失败，都会返回每个 Promise 的结果。
+```
+let promise1 = Promise.resolve(42);
+let promise2 = new Promise((resolve, reject) => setTimeout(reject, 1000, '失败'));
+let promise3 = Promise.resolve(88);
+
+Promise.allSettled([promise1, promise2, promise3]).then(results => {
+  console.log(results);
+  // 输出：
+  // [
+  //   { status: 'fulfilled', value: 42 },
+  //   { status: 'rejected', reason: '失败' },
+  //   { status: 'fulfilled', value: 88 }
+  // ]
+});
+```
+status可以是fulfilled(已完成)或者rejected(已拒绝)
 ## 模块化开发
 ### 导出(export)
 （1）命名导出
@@ -834,4 +980,110 @@ myFunction();             // This is the default export!
   console.log(pi);  // 输出：3.14159
 </script>
 ```
-在浏览器中，<script type="module"> 会告诉浏览器该文件是一个模块。浏览器会自动处理模块间的依赖关系。
+在浏览器中，< script type="module"> 会告诉浏览器该文件是一个模块。浏览器会自动处理模块间的依赖关系。
+
+## 面向对象编程(OOP)
+#### 创建对象
+（1）使用字面量创建对象
+```
+let person = {
+  name: "John",
+  age: 30,
+  greet: function() {
+    console.log("Hello, " + this.name);
+  }
+};
+```
+* 最简单的方式，直接通过 {} 创建对象。
+* this 关键字指向当前对象，访问对象的属性和方法。
+
+(2)使用构造函数创建对象
+```
+function Person(name, age) {
+  this.name = name;
+  this.age = age;
+  this.greet = function() {
+    console.log("Hello, " + this.name);
+  };
+}
+
+let john = new Person("John", 30);
+john.greet();  // 输出：Hello, John
+```
+* 使用构造函数来创建对象，每个实例都会拥有构造函数中定义的属性和方法。
+
+* 通过 new 关键字来创建实例。
+### 类
+```
+class Person {
+  constructor(name, age) {
+    this.name = name;
+    this.age = age;
+  }
+
+  greet() {
+    console.log("Hello, " + this.name);
+  }
+}
+
+let john = new Person("John", 30);
+john.greet();  // 输出：Hello, John
+```
+* constructor 是一个特殊的方法，用来初始化对象的属性。
+
+* 类中的其他方法定义在 constructor 之外。
+
+#### 继承
+* extends 关键字表示继承，子类可以访问父类的属性和方法。
+
+* 使用 super 调用父类的构造函数和方法。
+```
+class Animal {
+  constructor(name) {
+    this.name = name;
+  }
+
+  speak() {
+    console.log(this.name + " makes a sound");
+  }
+}
+
+class Dog extends Animal {
+  constructor(name, breed) {
+    super(name);  // 调用父类的构造函数
+    this.breed = breed;
+  }
+
+  speak() {
+    console.log(this.name + " barks");
+  }
+}
+
+let dog = new Dog("Buddy", "Golden Retriever");
+dog.speak();  // 输出：Buddy barks
+```
+#### 封装
+封装是 OOP 的核心思想之一，指的是将对象的属性和方法封装到一个类中，外界只能通过类提供的公共方法访问这些属性和方法
+```
+class Car {
+  constructor(brand, model) {
+    this.brand = brand;
+    this.model = model;
+    let speed = 0;  // 私有属性
+
+    this.accelerate = function() {
+      speed += 10;
+      console.log("Speed: " + speed + " km/h");
+    };
+
+    this.getSpeed = function() {
+      return speed;//外界可以访问私有数据的一个接口
+    };
+  }
+}
+
+let car = new Car("Toyota", "Corolla");
+car.accelerate();  // 输出：Speed: 10 km/h
+console.log(car.getSpeed());  // 输出：10
+```
+
